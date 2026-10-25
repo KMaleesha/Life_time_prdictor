@@ -1,0 +1,18 @@
+
+# Python cache files
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.venv/
+
+# Generated ML models and artifacts
+artifacts/
+*.joblib
+*.pkl
+*.h5
+*.pth
+
+# Environment variables
+.env
