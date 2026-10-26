@@ -104,7 +104,8 @@ export default function Sidebar({
       )}
 
       <p className="lx-side-foot">
-        Educational demo built on a synthetic dataset. Not medical advice.
+        Trained on the AyuSanka synthetic Sri Lankan health cohort. For learning
+        and demonstration only.
       </p>
     </aside>
   );

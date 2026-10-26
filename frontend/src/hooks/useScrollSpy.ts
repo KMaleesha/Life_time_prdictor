@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 
 export const sectionId = (title: string) => "sec-" + title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
-/** Which section is currently under the sticky header while the page scrolls. */
 export function useScrollSpy(ids: string[], offset = 120) {
   const [active, setActive] = useState(ids[0] ?? "");
   const key = ids.join("|");

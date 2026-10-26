@@ -7,7 +7,7 @@ import PredictionForm from "./components/PredictionForm";
 import ResultCard from "./components/ResultCard";
 import Sidebar, { type View } from "./components/Sidebar";
 import { sectionId, useScrollProgress, useScrollSpy } from "./hooks/useScrollSpy";
-import type { FormValues, MetricsPayload, PredictionResult, Schema } from "./types";
+import type { FormValues, MetricsPayload, PredictionResult, Schema } from "./types/result";
 import "./app.css";
 
 export default function App() {

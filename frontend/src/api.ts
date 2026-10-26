@@ -1,4 +1,4 @@
-import type { HoldoutPayload, MetricsPayload, PredictionResult, Schema } from "./types";
+import type { HoldoutPayload, MetricsPayload, PredictionResult, Schema } from "./types/result";
 
 const BASE = import.meta.env.VITE_API_URL ?? "http://localhost:8000";
 

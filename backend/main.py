@@ -1,4 +1,11 @@
+"""FastAPI backend serving the trained models.
+
+Run:  uvicorn main:app --reload --port 8000
+Docs: http://localhost:8000/docs
+Needs backend/artifacts/ from train.py.
+"""
 import json
+import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any, Optional
@@ -19,13 +26,15 @@ DISCLAIMER = (
     "Educational demo built on a synthetic dataset. "
     "This is not medical advice and not a real life-expectancy estimate."
 )
+# comma-separated list, override with the ALLOWED_ORIGINS env var
+ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
 
 state: dict[str, Any] = {}
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Load models once at startup."""
+    # load everything once at startup
     needed = ["schema.json", "metrics.json", "holdout_row.json"]
     missing = [f for f in needed if not (ART / f).exists()]
     if missing:
@@ -50,7 +59,7 @@ app = FastAPI(title="Sri Lanka Life Expectancy API", version="1.0", lifespan=lif
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=[o.strip() for o in ORIGINS],
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -58,7 +67,7 @@ app.add_middleware(
 
 class PredictRequest(BaseModel):
     features: dict[str, Any]
-    model: Optional[str] = None   # None = best model (lowest RMSE)
+    model: Optional[str] = None  # None = best model
 
 
 def build_row(features: dict[str, Any]) -> pd.DataFrame:
@@ -103,7 +112,7 @@ def health():
 
 @app.get("/schema")
 def get_schema():
-    """Dropdown options and numeric ranges for the form."""
+    """Form options and numeric ranges."""
     return state["schema"]
 
 
@@ -115,7 +124,7 @@ def get_metrics():
 
 @app.get("/holdout")
 def get_holdout():
-    """Held-out row (not used in training) for the demo."""
+    """Held-out row for the demo."""
     target = state["schema"]["target"]
     row = dict(state["holdout"])
     actual = row.pop(target)

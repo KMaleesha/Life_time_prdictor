@@ -1,4 +1,4 @@
-import type { FormValues, Schema } from "./types";
+import type { FormValues, Schema } from "./types/result";
 
 export const GROUPS: { title: string; fields: string[] }[] = [
   { title: "Demographics", fields: ["age", "gender", "district"] },

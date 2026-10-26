@@ -1,7 +1,7 @@
 import { useMemo, useState } from "react";
 import { Bar, BarChart, CartesianGrid, Legend, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 import { labelFor } from "../fields";
-import type { MetricsPayload } from "../types";
+import type { MetricsPayload } from "../types/result";
 
 const tick = { fill: "#5b6c78", fontSize: 12 };
 const tooltipStyle = { borderRadius: 8, border: "1px solid #e2e8ed", boxShadow: "0 8px 24px -12px rgba(16,34,45,.25)", fontSize: 13 };

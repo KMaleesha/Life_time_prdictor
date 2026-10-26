@@ -1,8 +1,8 @@
-import type { PredictionResult } from "../types";
+import type { PredictionResult } from "../types/result";
 
 interface Props {
   result: PredictionResult | null;
-  actual: number | null; // only set when the loaded sample row is unchanged
+  actual: number | null;
   error: string | null;
 }
 
@@ -72,7 +72,6 @@ export default function ResultCard({ result, actual, error }: Props) {
         ))}
       </div>
 
-      <p className="lx-disclaimer">{result.disclaimer}</p>
     </div>
   );
 }

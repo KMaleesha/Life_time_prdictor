@@ -1,4 +1,4 @@
-import type { FormValues, Schema } from "../types";
+import type { FormValues, Schema } from "../types/result";
 import { groupsFor, isBinary, isDecimal, labelFor } from "../fields";
 import { sectionId } from "../hooks/useScrollSpy";
 
