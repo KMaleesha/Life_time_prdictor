@@ -1,0 +1,213 @@
+{
+  "numeric": {
+    "age": {
+      "min": 18.0,
+      "max": 92.0,
+      "median": 42.0
+    },
+    "pm25": {
+      "min": 5.0,
+      "max": 29.5,
+      "median": 16.8
+    },
+    "cigarettes_day": {
+      "min": 0.0,
+      "max": 40.0,
+      "median": 0.0
+    },
+    "drinks_week": {
+      "min": 0.0,
+      "max": 35.0,
+      "median": 0.0
+    },
+    "bmi_numeric": {
+      "min": 15.5,
+      "max": 41.1,
+      "median": 24.3
+    },
+    "dengue": {
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    },
+    "covid": {
+      "min": 0.0,
+      "max": 1.0,
+      "median": 1.0
+    },
+    "other_deadly": {
+      "min": 0.0,
+      "max": 1.0,
+      "median": 0.0
+    }
+  },
+  "categorical": {
+    "gender": [
+      "Female",
+      "Male"
+    ],
+    "district": [
+      "Ampara",
+      "Anuradhapura",
+      "Badulla",
+      "Batticaloa",
+      "Colombo",
+      "Galle",
+      "Gampaha",
+      "Hambantota",
+      "Jaffna",
+      "Kalutara",
+      "Kandy",
+      "Kegalle",
+      "Kilinochchi",
+      "Kurunegala",
+      "Mannar",
+      "Matale",
+      "Matara",
+      "Moneragala",
+      "Mullaitivu",
+      "Nuwara Eliya",
+      "Polonnaruwa",
+      "Puttalam",
+      "Ratnapura",
+      "Trincomalee",
+      "Vavuniya"
+    ],
+    "exercise": [
+      "Active",
+      "Inactive",
+      "Moderate"
+    ],
+    "diet": [
+      "Low",
+      "Medium",
+      "Optimal"
+    ],
+    "sleep": [
+      "Excessive",
+      "Healthy",
+      "Insufficient"
+    ],
+    "screening": [
+      "No",
+      "Yes"
+    ],
+    "hydration": [
+      "Good",
+      "Moderate",
+      "Poor"
+    ],
+    "blood_pressure": [
+      "High",
+      "Low",
+      "Normal",
+      "Prehypertension"
+    ],
+    "diabetes": [
+      "Managed",
+      "None",
+      "Unmanaged"
+    ],
+    "cholesterol": [
+      "BorderlineHigh",
+      "High",
+      "Normal"
+    ],
+    "ckd": [
+      "Advanced",
+      "Early",
+      "None"
+    ],
+    "heart_disease": [
+      "Managed",
+      "None",
+      "Unmanaged"
+    ],
+    "cancer_status": [
+      "Active",
+      "None",
+      "Remission"
+    ],
+    "accidents": [
+      "Major",
+      "Moderate",
+      "None"
+    ],
+    "parts_removed": [
+      "Limb",
+      "MajorOrgan",
+      "Minor",
+      "None"
+    ],
+    "water_quality": [
+      "Clean",
+      "Moderate",
+      "Poor"
+    ],
+    "occup_hazard": [
+      "High",
+      "Low",
+      "Moderate"
+    ],
+    "noise": [
+      "High",
+      "Low",
+      "Moderate"
+    ],
+    "fam_longevity": [
+      "Average",
+      "Long",
+      "Short"
+    ],
+    "fam_cancer": [
+      "None",
+      "Some",
+      "Strong"
+    ],
+    "fam_heart": [
+      "None",
+      "Some",
+      "Strong"
+    ],
+    "sunlight_exp": [
+      "High",
+      "Low",
+      "Moderate"
+    ],
+    "caffeine": [
+      "Excessive",
+      "Moderate",
+      "None"
+    ],
+    "volunteering": [
+      "No",
+      "Regularly",
+      "Sometimes"
+    ],
+    "pet_ownership": [
+      "No",
+      "Yes"
+    ],
+    "diet_type": [
+      "Omnivore",
+      "Pescatarian",
+      "Vegan",
+      "Vegetarian"
+    ],
+    "meditation": [
+      "Daily",
+      "No",
+      "Sometimes"
+    ],
+    "oral_hygiene": [
+      "Excellent",
+      "Good",
+      "Poor"
+    ],
+    "air_purifier": [
+      "No",
+      "Yes"
+    ]
+  },
+  "target": "simulated_age_of_death"
+}
