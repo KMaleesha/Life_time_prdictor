@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { fetchHoldout, fetchMetrics, fetchSchema, predict } from "./api";
-import { defaultValues } from "./fields";
+import { defaultValues, groupsFor } from "./fields";
+import AppHeader from "./components/AppHeader";
 import ModelComparison from "./components/ModelComparison";
 import PredictionForm from "./components/PredictionForm";
 import ResultCard from "./components/ResultCard";
+import Sidebar, { type View } from "./components/Sidebar";
+import { sectionId, useScrollProgress, useScrollSpy } from "./hooks/useScrollSpy";
 import type { FormValues, MetricsPayload, PredictionResult, Schema } from "./types";
+import "./app.css";
 
 export default function App() {
   const [schema, setSchema] = useState<Schema | null>(null);
@@ -16,6 +20,13 @@ export default function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [view, setView] = useState<View>("predict");
+
+  const groups = useMemo(() => (schema ? groupsFor(schema) : []), [schema]);
+  const ids = view === "predict" ? groups.map((g) => sectionId(g.title)) : [];
+  const [activeId, setActiveId] = useScrollSpy(ids);
+  const scrollProgress = useScrollProgress();
+  const resultRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     Promise.all([fetchSchema(), fetchMetrics()])
@@ -27,21 +38,31 @@ export default function App() {
       .catch((e: Error) => setLoadError(e.message));
   }, []);
 
+  // On narrow screens the result sits below the form, so bring it into view
+  useEffect(() => {
+    if (result && window.innerWidth < 1180) resultRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [result]);
+
   if (loadError) {
     return (
-      <main className="container">
-        <div className="card error">
-          <h2>Cannot load the dashboard</h2>
+      <div className="lx-app lx-boot">
+        <div className="lx-result lx-result-error" role="alert">
+          <h2>Can't reach the backend</h2>
           <p>{loadError}</p>
-          <p className="muted">
-            Start the backend: <code>uvicorn main:app --reload --port 8000</code> (inside the backend folder).
+          <p className="lx-muted">
+            Start it from the backend folder with <code>uvicorn main:app --reload --port 8000</code>, then refresh.
           </p>
         </div>
-      </main>
+      </div>
     );
   }
+
   if (!schema || !metrics) {
-    return <main className="container"><p>Loading…</p></main>;
+    return (
+      <div className="lx-app lx-boot" aria-busy="true">
+        <div className="lx-skeleton" style={{ height: 420 }} />
+      </div>
+    );
   }
 
   const handleChange = (name: string, value: string) => {
@@ -87,33 +108,63 @@ export default function App() {
     setError(null);
   };
 
-  return (
-    <main className="container">
-      <header>
-        <h1>Sri Lanka Life Expectancy Predictor</h1>
-        <p className="muted">
-          Random Forest vs XGBoost (+ LightGBM) trained on the synthetic AyuSanka health cohort.
-          Educational demo, not medical advice.
-        </p>
-      </header>
+  const navigate = (id: string) => {
+    setActiveId(id);
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
-      <div className="layout">
-        <PredictionForm
-          schema={schema}
-          values={values}
-          models={Object.keys(metrics.metrics)}
-          modelChoice={modelChoice}
-          loading={loading}
-          onChange={handleChange}
-          onModelChange={setModelChoice}
-          onSubmit={handleSubmit}
-          onLoadSample={handleLoadSample}
-          onReset={handleReset}
-        />
-        <ResultCard result={result} actual={result ? sampleActual : null} error={error} />
+  const changeView = (v: View) => {
+    setView(v);
+    window.scrollTo({ top: 0 });
+  };
+
+  const best = metrics.metrics[metrics.best_model];
+
+  return (
+    <div className="lx-app">
+      <div className="lx-topbar" aria-hidden="true">
+        <i style={{ transform: `scaleX(${scrollProgress})` }} />
       </div>
 
-      <ModelComparison data={metrics} />
-    </main>
+      <Sidebar view={view} onViewChange={changeView} groups={groups} activeId={activeId} onNavigate={navigate} />
+
+      <div className="lx-main">
+        <AppHeader
+          title={view === "predict" ? "Predict life expectancy" : "Model comparison"}
+          subtitle={
+            view === "predict"
+              ? "Enter a person's details to estimate age at death."
+              : "Random Forest, XGBoost and LightGBM compared on the held-out test set."
+          }
+          bestModel={metrics.best_model}
+          rmse={best?.RMSE}
+          r2={best?.R2}
+        />
+
+        <main className="lx-content">
+          {view === "predict" ? (
+            <div className="lx-predict">
+              <PredictionForm
+                schema={schema}
+                values={values}
+                models={Object.keys(metrics.metrics)}
+                modelChoice={modelChoice}
+                loading={loading}
+                onChange={handleChange}
+                onModelChange={setModelChoice}
+                onSubmit={handleSubmit}
+                onLoadSample={handleLoadSample}
+                onReset={handleReset}
+              />
+              <div className="lx-aside" ref={resultRef}>
+                <ResultCard result={result} actual={result ? sampleActual : null} error={error} />
+              </div>
+            </div>
+          ) : (
+            <ModelComparison data={metrics} />
+          )}
+        </main>
+      </div>
+    </div>
   );
 }
