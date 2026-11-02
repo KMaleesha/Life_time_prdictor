@@ -1,142 +1,1100 @@
 {
   "metrics": {
-    "RandomForest": {
-      "MAE": 3.256,
-      "RMSE": 4.151,
-      "R2": 0.7312,
-      "Train_R2": 0.8803,
-      "train_seconds": 140.9
+    "EBM": {
+      "MAE": 2.916,
+      "RMSE": 3.681,
+      "R2": 0.7877,
+      "Train_R2": 0.7897,
+      "Val_RMSE": 3.659,
+      "train_seconds": 34.7
     },
-    "XGBoost": {
-      "MAE": 2.88,
-      "RMSE": 3.656,
-      "R2": 0.7915,
-      "Train_R2": 0.8122,
-      "train_seconds": 10.6
+    "RandomForest": {
+      "MAE": 3.269,
+      "RMSE": 4.166,
+      "R2": 0.7281,
+      "Train_R2": 0.8794,
+      "Val_RMSE": 4.127,
+      "train_seconds": 106.0
     },
     "LightGBM": {
-      "MAE": 2.888,
-      "RMSE": 3.664,
-      "R2": 0.7906,
-      "Train_R2": 0.8061,
-      "train_seconds": 4.8
+      "MAE": 2.897,
+      "RMSE": 3.677,
+      "R2": 0.7881,
+      "Train_R2": 0.8075,
+      "Val_RMSE": 3.643,
+      "train_seconds": 3.6
     }
   },
   "importances": {
-    "RandomForest": {
-      "age": 0.4118067312023911,
-      "gender": 0.12078733449030278,
-      "exercise": 0.06380876926703402,
-      "bmi_numeric": 0.05190032739143861,
-      "cigarettes_day": 0.0407831676012988,
-      "blood_pressure": 0.03967813252178325,
-      "fam_longevity": 0.035837025478626286,
-      "diabetes": 0.025954792119522743,
-      "pm25": 0.024590655289422433,
-      "occup_hazard": 0.02230032993621846,
-      "diet": 0.019735118079438535,
-      "cholesterol": 0.016558000334714804,
-      "sleep": 0.013495188580714058,
-      "volunteering": 0.009515360624443019,
-      "covid": 0.008321909386837393,
-      "screening": 0.00827693636211519,
-      "sunlight_exp": 0.007811840765436546,
-      "meditation": 0.007512613217458159,
-      "hydration": 0.0072417730185623495,
-      "water_quality": 0.0067426013040105095,
-      "heart_disease": 0.006340488168985439,
-      "fam_heart": 0.005911724395367925,
-      "oral_hygiene": 0.0059080578215183616,
-      "accidents": 0.005213719206186973,
-      "district": 0.004903760052710699,
-      "caffeine": 0.004746991392842771,
-      "noise": 0.004735292166816269,
-      "fam_cancer": 0.003871197762282448,
-      "drinks_week": 0.0036295528894849543,
-      "pet_ownership": 0.003547818526599876,
-      "dengue": 0.0025803363373627535,
-      "ckd": 0.00223482514436281,
-      "parts_removed": 0.0021605010300019215,
-      "other_deadly": 0.0008672018087320293,
-      "air_purifier": 0.0003932389556412908,
-      "cancer_status": 0.0002966873693344838
+    "EBM": {
+      "age": 0.1373356407487582,
+      "gender": 0.08229648444481963,
+      "blood_pressure": 0.06025554410779201,
+      "exercise": 0.059391987719355006,
+      "fam_longevity": 0.0388058591149558,
+      "cigarettes_day": 0.0370674742659179,
+      "occup_hazard": 0.03699101637788682,
+      "bmi_numeric": 0.03493662661624623,
+      "diabetes": 0.033173239403316415,
+      "diet": 0.03277615097057985,
+      "cholesterol": 0.031943805132467695,
+      "sleep": 0.03138752562033962,
+      "covid": 0.02575945933206329,
+      "screening": 0.025671838815389512,
+      "age & gender": 0.02111685171966373,
+      "volunteering": 0.019284997860841428,
+      "fam_heart": 0.01687116221735957,
+      "accidents": 0.0145892732203273,
+      "water_quality": 0.014171258216264955,
+      "sunlight_exp": 0.013302554273917347,
+      "heart_disease": 0.012698990178778425,
+      "fam_cancer": 0.012482669159856142,
+      "meditation": 0.01238178394585767,
+      "pm25": 0.011956752183211168,
+      "age & exercise": 0.011478025203309827,
+      "dengue": 0.010780630542515048,
+      "hydration": 0.010502612973472252,
+      "oral_hygiene": 0.009637129508771795,
+      "caffeine": 0.009594328697538682,
+      "diet_type": 0.00917655756555415,
+      "pet_ownership": 0.008940197581635551,
+      "ckd": 0.008533964793192413,
+      "parts_removed": 0.007672636611838659,
+      "age & cigarettes_day": 0.007514382551859095,
+      "age & bmi_numeric": 0.0071222671035007425,
+      "age & diabetes": 0.0070577448427198795,
+      "age & cholesterol": 0.0069910351863464995,
+      "noise": 0.00686979396345892,
+      "other_deadly": 0.006013968271776553,
+      "age & fam_longevity": 0.005954655279509428,
+      "age & occup_hazard": 0.005938226672079094,
+      "age & blood_pressure": 0.00564355005489968,
+      "age & diet": 0.00510097086295625,
+      "age & screening": 0.0044319519291139845,
+      "age & heart_disease": 0.0037765391435654392,
+      "blood_pressure & diabetes": 0.003267453743204757,
+      "gender & blood_pressure": 0.0032475217091864914,
+      "cancer_status": 0.0029156217825398087,
+      "air_purifier": 0.0024198109796205254,
+      "exercise & blood_pressure": 0.00222306822546066,
+      "gender & diabetes": 0.0021591623284637675,
+      "cigarettes_day & blood_pressure": 0.0020289564092405474,
+      "district": 0.001792110403704937,
+      "cigarettes_day & diabetes": 0.001550639399784612,
+      "drinks_week": 0.0013263223523828904,
+      "age & drinks_week": 0.0012907533591225591,
+      "drinks_week & blood_pressure": 0.0003984643217088009
     },
-    "XGBoost": {
-      "gender": 0.23590533392652743,
-      "exercise": 0.09795902867953078,
-      "blood_pressure": 0.06744244598648576,
-      "age": 0.05921464962234565,
-      "fam_longevity": 0.055868211235885396,
-      "diabetes": 0.05281230964543626,
-      "occup_hazard": 0.04452616597846697,
-      "diet": 0.04215046964585579,
-      "heart_disease": 0.02988813114863466,
-      "cholesterol": 0.0279842465425575,
-      "cigarettes_day": 0.02473136670014903,
-      "sleep": 0.02353247133065359,
-      "screening": 0.021329619625472723,
-      "fam_heart": 0.02117859402397012,
-      "accidents": 0.019380566193324025,
-      "ckd": 0.0158107110815576,
-      "district": 0.01547847548017978,
-      "fam_cancer": 0.014076836127805388,
-      "parts_removed": 0.013980868223077507,
-      "volunteering": 0.012168592262561138,
-      "cancer_status": 0.012067922575675323,
-      "covid": 0.011990623905626366,
-      "water_quality": 0.011855040971646868,
-      "sunlight_exp": 0.009174521819965909,
-      "bmi_numeric": 0.008388303470018857,
-      "oral_hygiene": 0.00836912061092474,
-      "meditation": 0.0067002367826161854,
-      "hydration": 0.006636468367334081,
-      "caffeine": 0.005779550873921268,
-      "dengue": 0.0055326192424361795,
-      "noise": 0.004972886849638984,
-      "pet_ownership": 0.0042909827429590324,
-      "other_deadly": 0.00404441042737546,
-      "air_purifier": 0.002634274851730535,
-      "pm25": 0.0012748013630079161,
-      "drinks_week": 0.0008691416846452032
+    "RandomForest": {
+      "age": 0.4118068237881153,
+      "gender": 0.1198358253717383,
+      "exercise": 0.06452666185780948,
+      "bmi_numeric": 0.05170440087358917,
+      "cigarettes_day": 0.04114843961425407,
+      "blood_pressure": 0.039984266451831604,
+      "fam_longevity": 0.0354344507641064,
+      "diabetes": 0.025588527665930092,
+      "pm25": 0.024623325002702003,
+      "occup_hazard": 0.02264928129796912,
+      "diet": 0.019715790948716685,
+      "cholesterol": 0.016449582469275793,
+      "sleep": 0.013590305761033736,
+      "volunteering": 0.009736182435021378,
+      "screening": 0.008173392155452774,
+      "covid": 0.008071316997655606,
+      "sunlight_exp": 0.007913907488107604,
+      "meditation": 0.007532944966347767,
+      "hydration": 0.007361915690144638,
+      "water_quality": 0.006729901311525421,
+      "heart_disease": 0.0062703314466567225,
+      "fam_heart": 0.006025974933682545,
+      "oral_hygiene": 0.0059065678661136675,
+      "accidents": 0.005258459051020025,
+      "district": 0.0048530227646253945,
+      "noise": 0.004773054042640514,
+      "caffeine": 0.004737598403752416,
+      "fam_cancer": 0.0038049522862642396,
+      "drinks_week": 0.0035564104639236854,
+      "pet_ownership": 0.003507104688249443,
+      "dengue": 0.002550573573735256,
+      "ckd": 0.0022869354853969665,
+      "parts_removed": 0.0022416608893204293,
+      "other_deadly": 0.0009197632714463386,
+      "air_purifier": 0.0004078394971922221,
+      "cancer_status": 0.00032250842465323846
     },
     "LightGBM": {
-      "age": 0.12766666666666668,
-      "bmi_numeric": 0.07325,
-      "pm25": 0.052833333333333336,
-      "diet": 0.04758333333333333,
-      "blood_pressure": 0.04225,
-      "cigarettes_day": 0.04075,
-      "diabetes": 0.03791666666666667,
-      "fam_longevity": 0.03725,
-      "exercise": 0.03525,
-      "heart_disease": 0.031,
-      "cholesterol": 0.027916666666666666,
-      "occup_hazard": 0.027416666666666666,
-      "ckd": 0.024,
-      "parts_removed": 0.02375,
-      "water_quality": 0.023083333333333334,
-      "fam_heart": 0.022916666666666665,
-      "accidents": 0.02225,
-      "volunteering": 0.020916666666666667,
-      "cancer_status": 0.020666666666666667,
-      "sleep": 0.0205,
-      "sunlight_exp": 0.020166666666666666,
-      "fam_cancer": 0.019583333333333335,
-      "district": 0.018333333333333333,
-      "oral_hygiene": 0.018,
-      "hydration": 0.017666666666666667,
-      "meditation": 0.016916666666666667,
-      "gender": 0.016166666666666666,
-      "drinks_week": 0.015583333333333333,
-      "screening": 0.015416666666666667,
-      "noise": 0.015416666666666667,
-      "caffeine": 0.015416666666666667,
-      "covid": 0.015083333333333334,
-      "dengue": 0.010666666666666666,
-      "pet_ownership": 0.009583333333333333,
-      "other_deadly": 0.009416666666666667,
+      "age": 0.12266666666666666,
+      "bmi_numeric": 0.07158333333333333,
+      "pm25": 0.05341666666666667,
+      "diet": 0.04908333333333333,
+      "cigarettes_day": 0.041666666666666664,
+      "blood_pressure": 0.03858333333333333,
+      "fam_longevity": 0.03625,
+      "diabetes": 0.035583333333333335,
+      "exercise": 0.03383333333333333,
+      "heart_disease": 0.030666666666666665,
+      "occup_hazard": 0.029083333333333333,
+      "cholesterol": 0.027166666666666665,
+      "parts_removed": 0.025666666666666667,
+      "ckd": 0.025333333333333333,
+      "fam_heart": 0.0245,
+      "volunteering": 0.02325,
+      "water_quality": 0.022916666666666665,
+      "accidents": 0.022166666666666668,
+      "sleep": 0.022,
+      "district": 0.020166666666666666,
+      "fam_cancer": 0.02,
+      "cancer_status": 0.019583333333333335,
+      "oral_hygiene": 0.019083333333333334,
+      "meditation": 0.019,
+      "sunlight_exp": 0.018166666666666668,
+      "hydration": 0.017416666666666667,
+      "screening": 0.01675,
+      "noise": 0.016416666666666666,
+      "caffeine": 0.015583333333333333,
+      "drinks_week": 0.0155,
+      "covid": 0.015,
+      "gender": 0.01475,
+      "dengue": 0.010583333333333333,
+      "other_deadly": 0.009833333333333333,
+      "pet_ownership": 0.009333333333333334,
       "air_purifier": 0.007416666666666667
     }
   },
-  "best_model": "XGBoost"
+  "best_model": "LightGBM",
+  "primary_model": "EBM",
+  "ebm_params": {
+    "interactions": 20,
+    "learning_rate": 0.03
+  },
+  "tuning": [
+    {
+      "interactions": 0,
+      "learning_rate": 0.03,
+      "val_rmse": 3.964
+    },
+    {
+      "interactions": 10,
+      "learning_rate": 0.03,
+      "val_rmse": 3.739
+    },
+    {
+      "interactions": 10,
+      "learning_rate": 0.01,
+      "val_rmse": 3.737
+    },
+    {
+      "interactions": 20,
+      "learning_rate": 0.03,
+      "val_rmse": 3.673
+    }
+  ],
+  "pdp": {
+    "age": {
+      "type": "numeric",
+      "x": [
+        22.0,
+        26.0,
+        28.0,
+        30.0,
+        32.0,
+        34.0,
+        35.0,
+        37.0,
+        39.0,
+        41.0,
+        43.0,
+        45.0,
+        47.0,
+        50.0,
+        53.0,
+        56.0,
+        60.0,
+        65.0,
+        73.0,
+        90.0
+      ],
+      "y": {
+        "EBM": [
+          68.323,
+          68.449,
+          68.397,
+          68.314,
+          68.402,
+          68.439,
+          68.425,
+          68.39,
+          68.52,
+          68.572,
+          68.616,
+          68.645,
+          68.669,
+          68.783,
+          68.784,
+          68.865,
+          69.555,
+          72.628,
+          78.014,
+          93.95
+        ],
+        "LightGBM": [
+          68.458,
+          68.476,
+          68.479,
+          68.453,
+          68.461,
+          68.472,
+          68.471,
+          68.474,
+          68.541,
+          68.574,
+          68.652,
+          68.712,
+          68.718,
+          68.767,
+          68.883,
+          68.999,
+          69.502,
+          72.521,
+          77.799,
+          92.519
+        ]
+      }
+    },
+    "gender": {
+      "type": "categorical",
+      "x": [
+        "Female",
+        "Male"
+      ],
+      "y": {
+        "EBM": [
+          72.373,
+          68.412
+        ],
+        "LightGBM": [
+          72.544,
+          68.448
+        ]
+      }
+    },
+    "blood_pressure": {
+      "type": "categorical",
+      "x": [
+        "High",
+        "Low",
+        "Normal",
+        "Prehypertension"
+      ],
+      "y": {
+        "EBM": [
+          67.895,
+          71.079,
+          71.628,
+          70.125
+        ],
+        "LightGBM": [
+          67.926,
+          70.96,
+          71.521,
+          70.255
+        ]
+      }
+    },
+    "exercise": {
+      "type": "categorical",
+      "x": [
+        "Active",
+        "Inactive",
+        "Moderate"
+      ],
+      "y": {
+        "EBM": [
+          73.194,
+          68.073,
+          70.264
+        ],
+        "LightGBM": [
+          73.158,
+          68.12,
+          70.267
+        ]
+      }
+    },
+    "fam_longevity": {
+      "type": "categorical",
+      "x": [
+        "Average",
+        "Long",
+        "Short"
+      ],
+      "y": {
+        "EBM": [
+          70.346,
+          73.111,
+          68.573
+        ],
+        "LightGBM": [
+          70.362,
+          73.065,
+          68.647
+        ]
+      }
+    },
+    "cigarettes_day": {
+      "type": "numeric",
+      "x": [
+        0.0,
+        4.0,
+        10.0,
+        17.0
+      ],
+      "y": {
+        "EBM": [
+          71.022,
+          69.677,
+          67.554,
+          65.095
+        ],
+        "LightGBM": [
+          71.031,
+          69.841,
+          68.078,
+          66.425
+        ]
+      }
+    },
+    "occup_hazard": {
+      "type": "categorical",
+      "x": [
+        "High",
+        "Low",
+        "Moderate"
+      ],
+      "y": {
+        "EBM": [
+          67.716,
+          71.18,
+          69.834
+        ],
+        "LightGBM": [
+          67.824,
+          71.169,
+          69.854
+        ]
+      }
+    },
+    "bmi_numeric": {
+      "type": "numeric",
+      "x": [
+        16.8,
+        18.9,
+        20.1,
+        20.8,
+        21.5,
+        22.1,
+        22.6,
+        23.2,
+        23.6,
+        24.1,
+        24.6,
+        25.0,
+        25.5,
+        26.0,
+        26.6,
+        27.1,
+        27.8,
+        28.6,
+        29.8,
+        31.9
+      ],
+      "y": {
+        "EBM": [
+          70.867,
+          71.733,
+          71.873,
+          71.88,
+          71.762,
+          71.878,
+          71.74,
+          70.581,
+          70.396,
+          70.374,
+          70.446,
+          70.325,
+          70.354,
+          70.394,
+          70.398,
+          70.366,
+          68.67,
+          68.728,
+          68.544,
+          68.656
+        ],
+        "LightGBM": [
+          70.945,
+          71.702,
+          71.796,
+          71.795,
+          71.781,
+          71.789,
+          71.78,
+          70.555,
+          70.47,
+          70.406,
+          70.4,
+          70.393,
+          70.378,
+          70.389,
+          70.367,
+          70.314,
+          68.697,
+          68.681,
+          68.641,
+          68.63
+        ]
+      }
+    }
+  },
+  "fairness": [
+    {
+      "feature": "gender",
+      "groups": [
+        {
+          "group": "Female",
+          "n": 11659,
+          "mae": 2.937,
+          "bias": 0.015
+        },
+        {
+          "group": "Male",
+          "n": 10841,
+          "mae": 2.892,
+          "bias": 0.011
+        }
+      ]
+    },
+    {
+      "feature": "exercise",
+      "groups": [
+        {
+          "group": "Active",
+          "n": 5844,
+          "mae": 2.958,
+          "bias": -0.029
+        },
+        {
+          "group": "Inactive",
+          "n": 5821,
+          "mae": 2.891,
+          "bias": 0.009
+        },
+        {
+          "group": "Moderate",
+          "n": 10835,
+          "mae": 2.906,
+          "bias": 0.038
+        }
+      ]
+    },
+    {
+      "feature": "diet",
+      "groups": [
+        {
+          "group": "Low",
+          "n": 15308,
+          "mae": 2.924,
+          "bias": 0.003
+        },
+        {
+          "group": "Medium",
+          "n": 5375,
+          "mae": 2.889,
+          "bias": 0.039
+        },
+        {
+          "group": "Optimal",
+          "n": 1817,
+          "mae": 2.921,
+          "bias": 0.025
+        }
+      ]
+    },
+    {
+      "feature": "sleep",
+      "groups": [
+        {
+          "group": "Excessive",
+          "n": 2793,
+          "mae": 2.876,
+          "bias": 0.028
+        },
+        {
+          "group": "Healthy",
+          "n": 14826,
+          "mae": 2.944,
+          "bias": 0.012
+        },
+        {
+          "group": "Insufficient",
+          "n": 4881,
+          "mae": 2.852,
+          "bias": 0.009
+        }
+      ]
+    },
+    {
+      "feature": "screening",
+      "groups": [
+        {
+          "group": "No",
+          "n": 14941,
+          "mae": 2.948,
+          "bias": 0.02
+        },
+        {
+          "group": "Yes",
+          "n": 7559,
+          "mae": 2.852,
+          "bias": -0.001
+        }
+      ]
+    },
+    {
+      "feature": "hydration",
+      "groups": [
+        {
+          "group": "Good",
+          "n": 4977,
+          "mae": 2.96,
+          "bias": 0.058
+        },
+        {
+          "group": "Moderate",
+          "n": 13019,
+          "mae": 2.921,
+          "bias": -0.005
+        },
+        {
+          "group": "Poor",
+          "n": 4504,
+          "mae": 2.849,
+          "bias": 0.015
+        }
+      ]
+    },
+    {
+      "feature": "blood_pressure",
+      "groups": [
+        {
+          "group": "High",
+          "n": 5694,
+          "mae": 2.793,
+          "bias": 0.002
+        },
+        {
+          "group": "Low",
+          "n": 877,
+          "mae": 3.001,
+          "bias": 0.02
+        },
+        {
+          "group": "Normal",
+          "n": 13063,
+          "mae": 2.976,
+          "bias": 0.015
+        },
+        {
+          "group": "Prehypertension",
+          "n": 2866,
+          "mae": 2.856,
+          "bias": 0.025
+        }
+      ]
+    },
+    {
+      "feature": "diabetes",
+      "groups": [
+        {
+          "group": "Managed",
+          "n": 3216,
+          "mae": 2.818,
+          "bias": 0.14
+        },
+        {
+          "group": "None",
+          "n": 18000,
+          "mae": 2.94,
+          "bias": -0.001
+        },
+        {
+          "group": "Unmanaged",
+          "n": 1284,
+          "mae": 2.823,
+          "bias": -0.111
+        }
+      ]
+    },
+    {
+      "feature": "cholesterol",
+      "groups": [
+        {
+          "group": "BorderlineHigh",
+          "n": 4910,
+          "mae": 2.932,
+          "bias": -0.037
+        },
+        {
+          "group": "High",
+          "n": 5010,
+          "mae": 2.818,
+          "bias": 0.065
+        },
+        {
+          "group": "Normal",
+          "n": 12580,
+          "mae": 2.948,
+          "bias": 0.012
+        }
+      ]
+    },
+    {
+      "feature": "ckd",
+      "groups": [
+        {
+          "group": "Advanced",
+          "n": 246,
+          "mae": 3.34,
+          "bias": -0.2
+        },
+        {
+          "group": "Early",
+          "n": 766,
+          "mae": 2.768,
+          "bias": -0.215
+        },
+        {
+          "group": "None",
+          "n": 21488,
+          "mae": 2.916,
+          "bias": 0.024
+        }
+      ]
+    },
+    {
+      "feature": "heart_disease",
+      "groups": [
+        {
+          "group": "Managed",
+          "n": 1018,
+          "mae": 2.875,
+          "bias": 0.192
+        },
+        {
+          "group": "None",
+          "n": 21167,
+          "mae": 2.919,
+          "bias": 0.004
+        },
+        {
+          "group": "Unmanaged",
+          "n": 315,
+          "mae": 2.822,
+          "bias": 0.039
+        }
+      ]
+    },
+    {
+      "feature": "cancer_status",
+      "groups": [
+        {
+          "group": "Active",
+          "n": 112,
+          "mae": 3.717,
+          "bias": 0.666
+        },
+        {
+          "group": "None",
+          "n": 22201,
+          "mae": 2.911,
+          "bias": 0.014
+        },
+        {
+          "group": "Remission",
+          "n": 187,
+          "mae": 2.917,
+          "bias": -0.447
+        }
+      ]
+    },
+    {
+      "feature": "accidents",
+      "groups": [
+        {
+          "group": "Major",
+          "n": 629,
+          "mae": 3.055,
+          "bias": 0.004
+        },
+        {
+          "group": "Moderate",
+          "n": 2635,
+          "mae": 2.83,
+          "bias": -0.101
+        },
+        {
+          "group": "None",
+          "n": 19236,
+          "mae": 2.923,
+          "bias": 0.029
+        }
+      ]
+    },
+    {
+      "feature": "parts_removed",
+      "groups": [
+        {
+          "group": "Limb",
+          "n": 314,
+          "mae": 2.759,
+          "bias": 0.177
+        },
+        {
+          "group": "MajorOrgan",
+          "n": 341,
+          "mae": 2.843,
+          "bias": 0.143
+        },
+        {
+          "group": "Minor",
+          "n": 1959,
+          "mae": 2.95,
+          "bias": 0.117
+        },
+        {
+          "group": "None",
+          "n": 19886,
+          "mae": 2.916,
+          "bias": -0.002
+        }
+      ]
+    },
+    {
+      "feature": "water_quality",
+      "groups": [
+        {
+          "group": "Clean",
+          "n": 14669,
+          "mae": 2.923,
+          "bias": 0.05
+        },
+        {
+          "group": "Moderate",
+          "n": 6071,
+          "mae": 2.921,
+          "bias": -0.041
+        },
+        {
+          "group": "Poor",
+          "n": 1760,
+          "mae": 2.838,
+          "bias": -0.11
+        }
+      ]
+    },
+    {
+      "feature": "occup_hazard",
+      "groups": [
+        {
+          "group": "High",
+          "n": 2243,
+          "mae": 2.807,
+          "bias": 0.178
+        },
+        {
+          "group": "Low",
+          "n": 14933,
+          "mae": 2.942,
+          "bias": -0.017
+        },
+        {
+          "group": "Moderate",
+          "n": 5324,
+          "mae": 2.887,
+          "bias": 0.028
+        }
+      ]
+    },
+    {
+      "feature": "noise",
+      "groups": [
+        {
+          "group": "High",
+          "n": 1782,
+          "mae": 2.897,
+          "bias": 0.053
+        },
+        {
+          "group": "Low",
+          "n": 15345,
+          "mae": 2.929,
+          "bias": -0.018
+        },
+        {
+          "group": "Moderate",
+          "n": 5373,
+          "mae": 2.884,
+          "bias": 0.089
+        }
+      ]
+    },
+    {
+      "feature": "fam_longevity",
+      "groups": [
+        {
+          "group": "Average",
+          "n": 14355,
+          "mae": 2.879,
+          "bias": -0.003
+        },
+        {
+          "group": "Long",
+          "n": 4127,
+          "mae": 3.0,
+          "bias": 0.026
+        },
+        {
+          "group": "Short",
+          "n": 4018,
+          "mae": 2.96,
+          "bias": 0.058
+        }
+      ]
+    },
+    {
+      "feature": "fam_cancer",
+      "groups": [
+        {
+          "group": "None",
+          "n": 18986,
+          "mae": 2.91,
+          "bias": 0.007
+        },
+        {
+          "group": "Some",
+          "n": 2904,
+          "mae": 2.934,
+          "bias": -0.001
+        },
+        {
+          "group": "Strong",
+          "n": 610,
+          "mae": 2.995,
+          "bias": 0.26
+        }
+      ]
+    },
+    {
+      "feature": "fam_heart",
+      "groups": [
+        {
+          "group": "None",
+          "n": 18034,
+          "mae": 2.92,
+          "bias": 0.004
+        },
+        {
+          "group": "Some",
+          "n": 3582,
+          "mae": 2.866,
+          "bias": 0.003
+        },
+        {
+          "group": "Strong",
+          "n": 884,
+          "mae": 3.015,
+          "bias": 0.233
+        }
+      ]
+    },
+    {
+      "feature": "sunlight_exp",
+      "groups": [
+        {
+          "group": "High",
+          "n": 11632,
+          "mae": 2.914,
+          "bias": 0.037
+        },
+        {
+          "group": "Low",
+          "n": 2762,
+          "mae": 2.948,
+          "bias": 0.093
+        },
+        {
+          "group": "Moderate",
+          "n": 8106,
+          "mae": 2.907,
+          "bias": -0.048
+        }
+      ]
+    },
+    {
+      "feature": "caffeine",
+      "groups": [
+        {
+          "group": "Excessive",
+          "n": 3230,
+          "mae": 2.921,
+          "bias": -0.08
+        },
+        {
+          "group": "Moderate",
+          "n": 16178,
+          "mae": 2.915,
+          "bias": 0.027
+        },
+        {
+          "group": "None",
+          "n": 3092,
+          "mae": 2.915,
+          "bias": 0.038
+        }
+      ]
+    },
+    {
+      "feature": "volunteering",
+      "groups": [
+        {
+          "group": "No",
+          "n": 10793,
+          "mae": 2.9,
+          "bias": 0.029
+        },
+        {
+          "group": "Regularly",
+          "n": 3525,
+          "mae": 2.993,
+          "bias": -0.142
+        },
+        {
+          "group": "Sometimes",
+          "n": 8182,
+          "mae": 2.902,
+          "bias": 0.059
+        }
+      ]
+    },
+    {
+      "feature": "pet_ownership",
+      "groups": [
+        {
+          "group": "No",
+          "n": 14840,
+          "mae": 2.916,
+          "bias": 0.002
+        },
+        {
+          "group": "Yes",
+          "n": 7660,
+          "mae": 2.915,
+          "bias": 0.034
+        }
+      ]
+    },
+    {
+      "feature": "diet_type",
+      "groups": [
+        {
+          "group": "Omnivore",
+          "n": 19318,
+          "mae": 2.91,
+          "bias": 0.02
+        },
+        {
+          "group": "Pescatarian",
+          "n": 1376,
+          "mae": 2.867,
+          "bias": -0.2
+        },
+        {
+          "group": "Vegan",
+          "n": 217,
+          "mae": 3.084,
+          "bias": -0.353
+        },
+        {
+          "group": "Vegetarian",
+          "n": 1589,
+          "mae": 3.005,
+          "bias": 0.163
+        }
+      ]
+    },
+    {
+      "feature": "meditation",
+      "groups": [
+        {
+          "group": "Daily",
+          "n": 3101,
+          "mae": 2.978,
+          "bias": -0.0
+        },
+        {
+          "group": "No",
+          "n": 11637,
+          "mae": 2.884,
+          "bias": -0.009
+        },
+        {
+          "group": "Sometimes",
+          "n": 7762,
+          "mae": 2.937,
+          "bias": 0.051
+        }
+      ]
+    },
+    {
+      "feature": "oral_hygiene",
+      "groups": [
+        {
+          "group": "Excellent",
+          "n": 4157,
+          "mae": 2.957,
+          "bias": 0.014
+        },
+        {
+          "group": "Good",
+          "n": 15120,
+          "mae": 2.906,
+          "bias": 0.021
+        },
+        {
+          "group": "Poor",
+          "n": 3223,
+          "mae": 2.907,
+          "bias": -0.025
+        }
+      ]
+    },
+    {
+      "feature": "air_purifier",
+      "groups": [
+        {
+          "group": "No",
+          "n": 21114,
+          "mae": 2.916,
+          "bias": 0.019
+        },
+        {
+          "group": "Yes",
+          "n": 1386,
+          "mae": 2.903,
+          "bias": -0.079
+        }
+      ]
+    }
+  ]
 }
