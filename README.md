@@ -27,9 +27,9 @@ An interactive machine learning dashboard for exploring how health and lifestyle
 
 Use two terminals from the project root: one for the API and one for the dashboard. The first run also needs model training; it downloads the dataset and writes model files and evaluation artifacts to `backend/artifacts/`.
 
-### 1. Set up and train the backend
+### 1. Train the models and start the backend
 
-From the project root, create and activate a virtual environment, install the dependencies, and train the models:
+From the project root, create and activate a virtual environment and install the backend dependencies:
 
 ```powershell
 cd backend
@@ -37,10 +37,19 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
 pip install -r requirements.txt
+```
+
+#### Train or retrain the models
+
+Run the training script from the `backend/` directory:
+
+```powershell
 python train.py
 ```
 
-Training may take a while. When it completes, start the API in the same terminal:
+The script downloads the synthetic dataset from Kaggle on its first run, prepares the features, tunes the EBM settings on a validation split, and trains EBM, Random Forest, and LightGBM models. It evaluates them on a held-out test split and writes the trained models, feature schema, evaluation metrics, holdout example, and plots to `backend/artifacts/`. Training can take a while. Rerun `python train.py` whenever you want to regenerate these artifacts; keep the API stopped while retraining.
+
+After training succeeds, start the API from the same `backend/` directory:
 
 ```powershell
 uvicorn main:app --reload --port 8000
