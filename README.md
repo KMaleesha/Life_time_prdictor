@@ -5,9 +5,10 @@ An interactive machine learning dashboard for exploring how health and lifestyle
 > **For learning and demonstration only.** The project uses synthetic data. Predictions are not medical advice and are not real life expectancy estimates.
 
 <!-- Add a screenshot of the frontend here (for example, save it as docs/frontend-screenshot.png). -->
-<p align="center">
-  <img src="docs/frontend-screenshot.png" alt="Sri Lanka Life Expectancy Explorer frontend" width="900" />
-</p>
+<img width="1904" height="950" alt="image" src="https://github.com/user-attachments/assets/271be391-f08b-40a6-90cf-351c504ef7f8" />
+
+<img width="1888" height="953" alt="image" src="https://github.com/user-attachments/assets/9c045af6-4fa5-4b08-b6c5-a136a58cd35c" />
+
 
 ## What’s inside
 
