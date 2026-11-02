@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Any, Optional
 
 import joblib
+import numpy as np
 import pandas as pd
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -18,15 +19,14 @@ from pydantic import BaseModel
 
 ART = Path(__file__).parent / "artifacts"
 MODEL_FILES = {
+    "EBM": "ebm_model.joblib",
     "RandomForest": "randomforest_model.joblib",
-    "XGBoost": "xgboost_model.joblib",
     "LightGBM": "lightgbm_model.joblib",
 }
 DISCLAIMER = (
     "Educational demo built on a synthetic dataset. "
     "This is not medical advice and not a real life-expectancy estimate."
 )
-# comma-separated list, override with the ALLOWED_ORIGINS env var
 ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173").split(",")
 
 state: dict[str, Any] = {}
@@ -34,7 +34,6 @@ state: dict[str, Any] = {}
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # load everything once at startup
     needed = ["schema.json", "metrics.json", "holdout_row.json"]
     missing = [f for f in needed if not (ART / f).exists()]
     if missing:
@@ -55,7 +54,7 @@ async def lifespan(app: FastAPI):
     state.clear()
 
 
-app = FastAPI(title="Sri Lanka Life Expectancy API", version="1.0", lifespan=lifespan)
+app = FastAPI(title="Sri Lanka Life Expectancy API", version="2.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -67,7 +66,7 @@ app.add_middleware(
 
 class PredictRequest(BaseModel):
     features: dict[str, Any]
-    model: Optional[str] = None  # None = best model
+    model: Optional[str] = None  # None = primary model (EBM)
 
 
 def build_row(features: dict[str, Any]) -> pd.DataFrame:
@@ -102,7 +101,27 @@ def build_row(features: dict[str, Any]) -> pd.DataFrame:
 
     if errors:
         raise HTTPException(status_code=422, detail=errors)
-    return pd.DataFrame([row])
+    # same column order as training
+    return pd.DataFrame([row])[schema["feature_order"]]
+
+
+def explain_ebm(df: pd.DataFrame, top: int = 8) -> Optional[dict]:
+    """Exact additive contributions of each EBM term (in years)."""
+    ebm = state["models"].get("EBM")
+    if ebm is None:
+        return None
+    contrib = np.asarray(ebm.eval_terms(df))[0]
+    names = list(ebm.term_names_)
+    order = np.argsort(-np.abs(contrib))[:top]
+    items = []
+    for i in order:
+        shown = " | ".join(str(df[p].iloc[0]) for p in names[i].split(" & ") if p in df.columns)
+        items.append({"term": names[i], "input": shown, "value": round(float(contrib[i]), 3)})
+    return {
+        "intercept": round(float(np.ravel(ebm.intercept_)[0]), 2),
+        "contributions": items,
+        "other": round(float(contrib.sum() - contrib[order].sum()), 3),
+    }
 
 
 @app.get("/health")
@@ -112,19 +131,17 @@ def health():
 
 @app.get("/schema")
 def get_schema():
-    """Form options and numeric ranges."""
     return state["schema"]
 
 
 @app.get("/metrics")
 def get_metrics():
-    """Model metrics and feature importances."""
+    """Metrics, importances, partial dependence and fairness tables."""
     return state["metrics"]
 
 
 @app.get("/holdout")
 def get_holdout():
-    """Held-out row for the demo."""
     target = state["schema"]["target"]
     row = dict(state["holdout"])
     actual = row.pop(target)
@@ -134,7 +151,7 @@ def get_holdout():
 @app.post("/predict")
 def predict(req: PredictRequest):
     models = state["models"]
-    chosen = req.model or state["metrics"].get("best_model") or next(iter(models))
+    chosen = req.model or state["metrics"].get("primary_model") or next(iter(models))
     if chosen not in models:
         raise HTTPException(status_code=400, detail=f"Unknown model '{chosen}'. Use one of {list(models)}")
 
@@ -148,5 +165,6 @@ def predict(req: PredictRequest):
         "predicted_age_of_death": predicted,
         "estimated_remaining_years": round(max(predicted - age, 0.0), 1),
         "all_models": all_preds,
+        "explanation": explain_ebm(df),
         "disclaimer": DISCLAIMER,
     }

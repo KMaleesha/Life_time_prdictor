@@ -1,4 +1,5 @@
 import type { PredictionResult } from "../types/result";
+import { termLabel } from "../types/termLabel";
 
 interface Props {
   result: PredictionResult | null;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const clampPct = (age: number) => Math.max(0, Math.min(100, age));
+const sign = (v: number) => (v > 0 ? "+" : "");
 
 export default function ResultCard({ result, actual, error }: Props) {
   if (error) {
@@ -27,7 +29,7 @@ export default function ResultCard({ result, actual, error }: Props) {
         <div className="lx-ph" />
         <ol className="lx-howto">
           <li>Enter details, or load a sample row.</li>
-          <li>Pick a model, or keep the automatic best one.</li>
+          <li>Pick a model, or keep the default EBM.</li>
           <li>Press Predict.</li>
         </ol>
       </div>
@@ -36,6 +38,8 @@ export default function ResultCard({ result, actual, error }: Props) {
 
   const ages = Object.values(result.all_models);
   const spread = ages.length ? Math.max(...ages) - Math.min(...ages) : 0;
+  const ex = result.explanation;
+  const maxContrib = ex ? Math.max(...ex.contributions.map((c) => Math.abs(c.value)), 0.01) : 1;
 
   return (
     <div className="lx-result" aria-live="polite">
@@ -72,6 +76,29 @@ export default function ResultCard({ result, actual, error }: Props) {
         ))}
       </div>
 
+      {ex && (
+        <div className="lx-models">
+          <h3>Why this prediction (EBM)</h3>
+          <p className="lx-muted">
+            Starts at {ex.intercept.toFixed(1)} yrs. Each factor adds or removes years (red = removes).
+          </p>
+          {ex.contributions.map((c) => (
+            <div key={c.term} className="lx-mrow" title={c.input}>
+              <span className="name">{termLabel(c.term)}</span>
+              <span className="bar">
+                <i
+                  style={{
+                    width: `${(Math.abs(c.value) / maxContrib) * 100}%`,
+                    background: c.value < 0 ? "#b4412b" : undefined,
+                  }}
+                />
+              </span>
+              <span className="val">{sign(c.value)}{c.value.toFixed(1)}</span>
+            </div>
+          ))}
+          <p className="lx-muted">All other factors: {sign(ex.other)}{ex.other.toFixed(1)} yrs</p>
+        </div>
+      )}
     </div>
   );
 }
