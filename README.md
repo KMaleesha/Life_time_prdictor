@@ -68,6 +68,8 @@ pip install -r requirements.txt
 
 #### Train or retrain the models
 
+URL for the dataset - https://www.kaggle.com/datasets/bawanthabeliwaththa/sri-lankan-health-data-from-various-factors
+
 Run the training script from the `backend/` directory:
 
 ```powershell
