@@ -42,7 +42,8 @@ Normalized feature importance comparisons:
 
 SHAP summary for the LightGBM benchmark:
 
-![LightGBM SHAP summary](backend/artifacts/shap_summary_lightgbm.png)
+<img width="1200" height="1125" alt="image" src="https://github.com/user-attachments/assets/ca92d42a-242c-4c90-928a-5ff264f443c6" />
+
 
 ## Prerequisites
 
